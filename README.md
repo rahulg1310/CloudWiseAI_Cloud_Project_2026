@@ -67,6 +67,14 @@ This project proposes an AI-powered FinOps framework that predicts future cloud 
 
 # Proposed Architecture
 
+## AWS Architecture
+
+![AWS Architecture](architecture/AWSArchitecture.png)
+
+## System Architecture
+
+![System Architecture](architecture/SystemArchitecture.png)
+
 The proposed framework consists of four major layers:
 
 1. User Interface
