@@ -100,20 +100,45 @@ Train AI models to predict future cloud expenditure and identify optimization op
 
 # Repository Structure
 
+```text
+CloudWiseAI_Cloud_Project_2026
+├── docs
+│   ├── Abstract.md
+│   ├── DatasetDetails.md
+│   ├── LiteratureSurvey.md
+│   ├── Novelty.md
+│   ├── Objectives.md
+│   ├── ResearchGap.md
+│   └── TechnologyStack.md
+│
+├── architecture
+│   ├── AWSArchitecture.png
+│   ├── SystemArchitecture.png
+│   └── README.md
+│
+├── dataset
+│   └── README.md
+│
+├── presentation
+│   └── README.md
+│
+├── results
+│   └── README.md
+│
+├── src
+│   ├── frontend
+│   │   └── README.md
+│   ├── backend
+│   │   └── README.md
+│   ├── ml_model
+│   │   └── README.md
+│   └── aws
+│       └── README.md
+│
+├── LICENSE
+├── .gitignore
+└── README.md
 ```
-docs/
-architecture/
-dataset/
-src/
-    frontend/
-    backend/
-    ml_model/
-    aws/
-presentation/
-results/
-```
-
----
 
 # Current Status
 
