@@ -44,13 +44,7 @@ const CostContext = ({children}) => {
           axios.get(`${import.meta.env.VITE_API_URL}/utilization`, {headers}),
         ]);
 
-        setCostSummary({
-          totalCost: Number(summaryRes.data?.totalCost ?? mockCostSummary.totalCost),
-          forecastedCost: Number(summaryRes.data?.forecastedCost ?? mockCostSummary.forecastedCost),
-          potentialSavings: Number(summaryRes.data?.potentialSavings ?? mockCostSummary.potentialSavings),
-          anomalyCount: Number(summaryRes.data?.anomalyCount ?? mockCostSummary.anomalyCount),
-          monthOverMonthChange: Number(summaryRes.data?.monthOverMonthChange ?? mockCostSummary.monthOverMonthChange),
-        });
+        setCostSummary(summaryRes.data);
         setCostTrend(trendRes.data);
         setServiceBreakdown(breakdownRes.data);
         setPredictions(predictionsRes.data);
