@@ -35,7 +35,7 @@ const Predictions = () => {
               <div key={elem.month} className='bg-[#10151d] border border-white/6 rounded-xl p-5 flex flex-col gap-2'>
                 <span className='body text-sm text-[#8b98a8]'>{elem.month} forecast</span>
                 <span className='mono text-2xl font-medium'>${elem.cost.toLocaleString()}</span>
-                <span className='body text-[12px] text-[#4b5768]'>{Math.round(elem.confidence * 100)}% confidence</span>
+                <span className='body text-[12px] text-[#4b5768]'>{Math.round(elem.confidence * 100)}% backtest accuracy</span>
               </div>
             ))}
           </div>

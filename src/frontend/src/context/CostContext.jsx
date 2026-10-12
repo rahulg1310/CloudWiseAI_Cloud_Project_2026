@@ -34,7 +34,8 @@ const CostContext = ({children}) => {
         const token = JSON.parse(localStorage.getItem("token"));
         const headers = { Authorization: `Bearer ${token}` };
 
-        const [summaryRes, trendRes, breakdownRes, predictionsRes, anomaliesRes, recsRes, utilRes] = await Promise.all([
+        // allSettled so one missing endpoint doesn't throw away the ones that worked.
+        const results = await Promise.allSettled([
           axios.get(`${import.meta.env.VITE_API_URL}/costs/summary`, {headers}),
           axios.get(`${import.meta.env.VITE_API_URL}/costs/trend`, {headers}),
           axios.get(`${import.meta.env.VITE_API_URL}/costs/breakdown`, {headers}),
@@ -44,16 +45,23 @@ const CostContext = ({children}) => {
           axios.get(`${import.meta.env.VITE_API_URL}/utilization`, {headers}),
         ]);
 
-        setCostSummary(summaryRes.data);
-        setCostTrend(trendRes.data);
-        setServiceBreakdown(breakdownRes.data);
-        setPredictions(predictionsRes.data);
-        setAnomalies(anomaliesRes.data);
-        setRecommendations(recsRes.data);
-        setUtilization(utilRes.data);
+        const [summaryRes, trendRes, breakdownRes, predictionsRes, anomaliesRes, recsRes, utilRes] = results;
+
+        // Only replace the mock data when the response has the shape the UI expects.
+        if(summaryRes.status === 'fulfilled' && summaryRes.value.data?.totalCost !== undefined) setCostSummary(summaryRes.value.data);
+        if(trendRes.status === 'fulfilled' && Array.isArray(trendRes.value.data)) setCostTrend(trendRes.value.data);
+        if(breakdownRes.status === 'fulfilled' && Array.isArray(breakdownRes.value.data)) setServiceBreakdown(breakdownRes.value.data);
+        if(predictionsRes.status === 'fulfilled' && predictionsRes.value.data?.forecast) setPredictions(predictionsRes.value.data);
+        if(anomaliesRes.status === 'fulfilled' && Array.isArray(anomaliesRes.value.data)) setAnomalies(anomaliesRes.value.data);
+        if(recsRes.status === 'fulfilled' && Array.isArray(recsRes.value.data)) setRecommendations(recsRes.value.data);
+        if(utilRes.status === 'fulfilled' && Array.isArray(utilRes.value.data)) setUtilization(utilRes.value.data);
+
+        results.forEach((res)=>{
+          if(res.status === 'rejected') console.log(res.reason);
+        });
       }
       catch(error){
-        // Backend isn't live yet — keep the mock data so the UI still works.
+        // Keep the mock data so the UI still works if something unexpected fails.
         console.log(error);
       }
       finally{

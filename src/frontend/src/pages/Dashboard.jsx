@@ -34,7 +34,7 @@ const Dashboard = () => {
             <StatCard
               title='Forecasted Spend'
               value={`$${costSummary.forecastedCost.toLocaleString()}`}
-              sub='End of month projection'
+              sub='Next month forecast'
               icon={<TrendingUp size={16} className='text-[#3b82f6]' />}
               bg='bg-[#3b82f6]/10'
             />
@@ -49,7 +49,7 @@ const Dashboard = () => {
             <StatCard
               title='Active Anomalies'
               value={costSummary.anomalyCount}
-              sub='Needs review'
+              sub='Last 90 days'
               subColor='text-[#f43f5e]'
               icon={<AlertTriangle size={16} className='text-[#f43f5e]' />}
               bg='bg-[#f43f5e]/10'

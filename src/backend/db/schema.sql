@@ -54,3 +54,12 @@ CREATE TABLE IF NOT EXISTS recommendations (
     status            VARCHAR(12)   NOT NULL DEFAULT 'open',
     created_at        TIMESTAMPTZ   NOT NULL DEFAULT NOW()
 );
+
+-- Output of the forecasting model: one row per forecast month.
+CREATE TABLE IF NOT EXISTS forecasts (
+    month        CHAR(7)       PRIMARY KEY,               -- 'YYYY-MM'
+    cost         NUMERIC(12,2) NOT NULL,
+    confidence   NUMERIC(4,2)  NOT NULL,                  -- 1 - backtest MAPE at this horizon
+    model        VARCHAR(40)   NOT NULL,
+    generated_at TIMESTAMPTZ   NOT NULL DEFAULT NOW()
+);
