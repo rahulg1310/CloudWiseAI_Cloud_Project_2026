@@ -1,0 +1,51 @@
+{
+  "backtest_origins": 7,
+  "models": {
+    "seasonal_naive": {
+      "monthly_mape_by_horizon": {
+        "1_month": 0.0152,
+        "2_month": 0.0264,
+        "3_month": 0.0325
+      },
+      "monthly_mape_mean": 0.0247,
+      "daily_mae": 22.22
+    },
+    "ridge": {
+      "monthly_mape_by_horizon": {
+        "1_month": 0.0031,
+        "2_month": 0.0043,
+        "3_month": 0.0061
+      },
+      "monthly_mape_mean": 0.0045,
+      "daily_mae": 7.55
+    },
+    "ridge_xgboost": {
+      "monthly_mape_by_horizon": {
+        "1_month": 0.0032,
+        "2_month": 0.0048,
+        "3_month": 0.0064
+      },
+      "monthly_mape_mean": 0.0048,
+      "daily_mae": 7.74
+    }
+  },
+  "selected": "ridge",
+  "confidence_definition": "1 - backtest monthly MAPE at that horizon",
+  "forecasts": [
+    {
+      "month": "2026-10",
+      "cost": 26473.54,
+      "confidence": 1.0
+    },
+    {
+      "month": "2026-11",
+      "cost": 26156.46,
+      "confidence": 1.0
+    },
+    {
+      "month": "2026-12",
+      "cost": 27851.4,
+      "confidence": 0.99
+    }
+  ]
+}

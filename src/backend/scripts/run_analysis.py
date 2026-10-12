@@ -15,6 +15,9 @@ Usage (from src/backend):
 import json
 import os
 import sys
+from dotenv import load_dotenv
+
+load_dotenv()
 
 import pandas as pd
 import psycopg2

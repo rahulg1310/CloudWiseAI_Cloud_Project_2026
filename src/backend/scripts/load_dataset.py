@@ -14,6 +14,10 @@ import os
 import sys
 
 import psycopg2
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 CSV_PATH = os.path.join(
     os.path.dirname(__file__), "..", "..", "..", "dataset", "raw", "cloudwise_billing.csv"

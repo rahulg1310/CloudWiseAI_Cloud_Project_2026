@@ -1,0 +1,47 @@
+{
+  "method": "weekday-aware robust z-score",
+  "parameters": {
+    "lookback_weeks": 8,
+    "z_threshold": 4.0,
+    "min_ratio": 1.4
+  },
+  "events_detected": 8,
+  "this_method": {
+    "day_level": {
+      "true_positives": 20,
+      "false_positives": 0,
+      "false_negatives": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    },
+    "event_level": {
+      "labeled_events": 8,
+      "detected_events": 8,
+      "labeled_events_found": 8,
+      "false_alarm_events": 0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0
+    }
+  },
+  "naive_rolling_3_sigma_baseline": {
+    "day_level": {
+      "true_positives": 18,
+      "false_positives": 57,
+      "false_negatives": 2,
+      "precision": 0.24,
+      "recall": 0.9,
+      "f1": 0.379
+    },
+    "event_level": {
+      "labeled_events": 8,
+      "detected_events": 65,
+      "labeled_events_found": 8,
+      "false_alarm_events": 57,
+      "precision": 0.123,
+      "recall": 1.0,
+      "f1": 0.219
+    }
+  }
+}
