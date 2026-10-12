@@ -1,0 +1,21 @@
+date,resource_id,service,expected_cost,actual_cost,multiplier,reason
+2025-04-25,i-prod-batch-01,EC2,94.0257,263.272,2.8,runaway batch job - on-demand hours spike
+2025-04-26,i-prod-batch-01,EC2,99.2363,277.8616,2.8,runaway batch job - on-demand hours spike
+2025-04-27,i-prod-batch-01,EC2,101.0319,282.8893,2.8,runaway batch job - on-demand hours spike
+2025-07-11,dt-inter-region,Data Transfer,15.5345,62.138,4.0,cross-region transfer misconfiguration
+2025-07-12,dt-inter-region,Data Transfer,13.3413,53.3652,4.0,cross-region transfer misconfiguration
+2025-09-25,db-orders-prod,RDS,45.1807,99.3975,2.2,storage auto-scaling loop
+2025-09-26,db-orders-prod,RDS,43.6072,95.9358,2.2,storage auto-scaling loop
+2025-11-28,fn-order-events,Lambda,14.8191,51.8668,3.5,retry storm - invocation count surge
+2025-11-29,fn-order-events,Lambda,14.5536,50.9376,3.5,retry storm - invocation count surge
+2025-11-30,fn-order-events,Lambda,13.0507,45.6775,3.5,retry storm - invocation count surge
+2025-12-01,fn-order-events,Lambda,13.9194,48.7179,3.5,retry storm - invocation count surge
+2026-02-06,cf-main-cdn,CloudFront,36.6624,109.9872,3.0,traffic spike / cache miss storm
+2026-02-07,cf-main-cdn,CloudFront,37.2594,111.7782,3.0,traffic spike / cache miss storm
+2026-04-18,i-analytics-01,EC2,63.8002,159.5005,2.5,unplanned large analytics run
+2026-04-19,i-analytics-01,EC2,62.6967,156.7417,2.5,unplanned large analytics run
+2026-04-20,i-analytics-01,EC2,83.0102,207.5255,2.5,unplanned large analytics run
+2026-06-14,s3-ml-datasets,S3,28.9737,75.3316,2.6,bulk request / retrieval surge
+2026-06-15,s3-ml-datasets,S3,28.3261,73.6479,2.6,bulk request / retrieval surge
+2026-08-17,i-prod-api-01,EC2,80.4939,193.1854,2.4,autoscaling over-provision after deploy
+2026-08-18,i-prod-api-01,EC2,81.7875,196.29,2.4,autoscaling over-provision after deploy

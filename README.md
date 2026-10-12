@@ -37,7 +37,7 @@ This project proposes an AI-powered FinOps framework that predicts future cloud 
 ## Frontend
 - React.js
 - Tailwind CSS
-- Chart.js
+- Hand-built SVG charts (no chart library)
 
 ## Backend
 - FastAPI
@@ -149,7 +149,10 @@ CloudWiseAI_Cloud_Project_2026
 - Literature Survey Completed
 - Research Gap Analysis Completed
 - Dataset Planning Completed
-- Implementation Phase Pending
+- Frontend Completed (src/frontend)
+- Synthetic Dataset + Generator Completed (dataset/)
+- PostgreSQL Schema + Loader Completed (src/backend)
+- FastAPI Endpoints, ML Models, AWS Deployment In Progress
 
 # Future Scope
 
