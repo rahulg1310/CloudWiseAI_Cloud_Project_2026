@@ -15,7 +15,7 @@ import {
 export const CostData = createContext();
 
 const CostContext = ({children}) => {
-  const {user} = useContext(UserData);
+  const {user, setUser} = useContext(UserData);
   const [loadModal, setLoadModal] = useState(false);
 
   const [costSummary, setCostSummary] = useState(mockCostSummary);
@@ -28,8 +28,8 @@ const CostContext = ({children}) => {
 
   useEffect(()=>{
     if(!user) return;
-    setLoadModal(true);
     const fetchCostData = async ()=>{
+      setLoadModal(true);
       try{
         const token = JSON.parse(localStorage.getItem("token"));
         const headers = { Authorization: `Bearer ${token}` };
@@ -46,6 +46,16 @@ const CostContext = ({children}) => {
         ]);
 
         const [summaryRes, trendRes, breakdownRes, predictionsRes, anomaliesRes, recsRes, utilRes] = results;
+
+        // An expired or invalid token makes every request 401. Sign out instead of
+        // quietly showing sample data as if it were the user's real numbers.
+        const sessionExpired = results.some((res)=> res.status === 'rejected' && res.reason?.response?.status === 401);
+        if(sessionExpired){
+          setUser(null);
+          localStorage.removeItem("user");
+          localStorage.removeItem("token");
+          return;
+        }
 
         // Only replace the mock data when the response has the shape the UI expects.
         if(summaryRes.status === 'fulfilled' && summaryRes.value.data?.totalCost !== undefined) setCostSummary(summaryRes.value.data);
@@ -69,7 +79,7 @@ const CostContext = ({children}) => {
       }
     }
     fetchCostData();
-  },[user])
+  },[user, setUser])
 
   return (
     <div>

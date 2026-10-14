@@ -152,7 +152,9 @@ CloudWiseAI_Cloud_Project_2026
 - Frontend Completed (src/frontend)
 - Synthetic Dataset + Generator Completed (dataset/)
 - PostgreSQL Schema + Loader Completed (src/backend)
-- FastAPI Endpoints, ML Models, AWS Deployment In Progress
+- FastAPI Backend (auth, costs, utilization, anomalies, recommendations, predictions) Completed
+- Anomaly Detection, Recommendation Rules and Cost Forecasting Completed
+- AI Assistant Endpoint and AWS Deployment In Progress
 
 # Future Scope
 

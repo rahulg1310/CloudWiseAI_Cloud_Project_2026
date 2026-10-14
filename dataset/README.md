@@ -30,7 +30,8 @@ generate_dataset.py       regenerates everything above
 
 - Upward cost trend (~$21k/month early 2025 to ~$26k/month in 2026) with weekly and mild yearly seasonality
 - 8 injected anomaly events (20 resource-days) with known cause, listed in `anomaly_labels.csv`
-- Recommendation targets: over-provisioned EC2 (CPU under 15%), 3 unattached EBS volumes, 2 cold S3 buckets, idle-on-weekend dev instances
+- Recommendation targets: over-provisioned EC2 (CPU under 15%), 3 unattached EBS volumes, large S3 buckets, and steady 24x7 production instances and databases
+- The dataset has no S3 access data, so S3 tiering candidates can only be picked by bucket size
 
 ## Regenerate
 
