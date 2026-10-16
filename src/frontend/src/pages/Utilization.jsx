@@ -3,7 +3,7 @@ import Sidebar from '../components/Sidebar'
 import UtilizationRow from '../components/UtilizationRow'
 import { CostData } from '../context/CostContext'
 
-const Utilization = () => {
+const Utilization = () => { 
   const {utilization} = useContext(CostData);
 
   return (
