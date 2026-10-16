@@ -1,4 +1,5 @@
 import os
+from contextlib import contextmanager
 
 from psycopg2.pool import ThreadedConnectionPool
 from psycopg2.extras import RealDictCursor
@@ -30,8 +31,9 @@ def close_pool():
         pool.closeall()
 
 
-def get_db():
-    """FastAPI dependency: hands out a pooled connection and commits/rolls back for us."""
+@contextmanager
+def db_session():
+    """A pooled connection that commits on success and rolls back on error."""
     conn = pool.getconn()
     try:
         yield conn
@@ -41,3 +43,9 @@ def get_db():
         raise
     finally:
         pool.putconn(conn)
+
+
+def get_db():
+    """FastAPI dependency: one pooled connection for the length of the request."""
+    with db_session() as conn:
+        yield conn

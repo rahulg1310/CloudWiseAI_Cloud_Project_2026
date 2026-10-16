@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from app import database
 from app.config import CORS_ORIGINS
-from app.routers import anomalies, auth, costs, predictions, recommendations, utilization
+from app.routers import anomalies, assistant, auth, costs, predictions, recommendations, utilization
 
 
 @asynccontextmanager
@@ -32,6 +32,7 @@ app.include_router(utilization.router, prefix="/api")
 app.include_router(anomalies.router, prefix="/api")
 app.include_router(recommendations.router, prefix="/api")
 app.include_router(predictions.router, prefix="/api")
+app.include_router(assistant.router, prefix="/api")
 
 
 @app.get("/api/health")

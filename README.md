@@ -154,7 +154,8 @@ CloudWiseAI_Cloud_Project_2026
 - PostgreSQL Schema + Loader Completed (src/backend)
 - FastAPI Backend (auth, costs, utilization, anomalies, recommendations, predictions) Completed
 - Anomaly Detection, Recommendation Rules and Cost Forecasting Completed
-- AI Assistant Endpoint and AWS Deployment In Progress
+- AI Assistant (src/backend + src/frontend) Completed
+- AWS Deployment In Progress
 
 # Future Scope
 

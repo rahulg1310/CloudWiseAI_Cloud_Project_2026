@@ -34,6 +34,10 @@ STEADY_MAX_VARIATION = 0.10     # robust coefficient of variation of daily cost
 ALWAYS_ON_SHARE = 0.95          # share of days running a full 24 hours
 
 
+def _plural(count, singular, plural):
+    return singular if count == 1 else plural
+
+
 def _names(resource_ids, limit=4):
     ids = list(resource_ids)
     text = ", ".join(ids[:limit])
@@ -71,7 +75,7 @@ def generate_recommendations(df):
 
     # ---- right-sizing (EC2, RDS)
     rightsized = set()
-    for service, label in [("EC2", "EC2 instances"), ("RDS", "RDS databases")]:
+    for service, singular, plural in [("EC2", "EC2 instance", "EC2 instances"), ("RDS", "RDS database", "RDS databases")]:
         low = stats[(stats["service"] == service) & (stats["cpu"] < UNDERUTILIZED_CPU)]
         if low.empty:
             continue
@@ -79,7 +83,7 @@ def generate_recommendations(df):
         savings = float(low["monthly_cost"].sum() * RIGHTSIZE_SAVINGS)
         cpu_range = f"{low['cpu'].min():.0f}-{low['cpu'].max():.0f}%" if len(low) > 1 else f"{low['cpu'].iloc[0]:.0f}%"
         recs.append({
-            "title": f"Right-size {len(low)} over-provisioned {label}",
+            "title": f"Right-size {len(low)} over-provisioned {_plural(len(low), singular, plural)}",
             "service": service,
             "category": "Right-sizing",
             "description": (f"Average CPU was {cpu_range} over the last {WINDOW_DAYS} days on {_names(low.index)}. "
@@ -125,7 +129,7 @@ def generate_recommendations(df):
     ebs = stats[(stats["service"] == "EBS") & (stats["hours"] == 0)]
     if not ebs.empty:
         recs.append({
-            "title": f"Delete {len(ebs)} unattached EBS volumes",
+            "title": f"Delete {len(ebs)} unattached EBS {_plural(len(ebs), 'volume', 'volumes')}",
             "service": "EBS",
             "category": "Cleanup",
             "description": (f"{_names(ebs.index)} had no attached instance in the last {WINDOW_DAYS} days "
@@ -138,7 +142,7 @@ def generate_recommendations(df):
     s3 = stats[(stats["service"] == "S3") & (stats["storage_gb"] >= S3_MIN_GB)]
     if not s3.empty:
         recs.append({
-            "title": f"Add lifecycle rules to {len(s3)} large S3 buckets",
+            "title": f"Add lifecycle rules to {len(s3)} large S3 {_plural(len(s3), 'bucket', 'buckets')}",
             "service": "S3",
             "category": "Storage tiering",
             "description": (f"{_names(s3.index)} hold {s3['storage_gb'].sum() / 1000:,.1f} TB. Transitioning older objects to "

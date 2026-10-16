@@ -27,18 +27,18 @@ def create_token(user_id: int) -> str:
     return jwt.encode(payload, JWT_SECRET, algorithm=JWT_ALGORITHM)
 
 
-def get_current_user(
-    credentials: HTTPAuthorizationCredentials = Depends(bearer_scheme),
-    conn=Depends(get_db),
-):
+def get_token_user_id(credentials: HTTPAuthorizationCredentials = Depends(bearer_scheme)) -> int:
+    """Validate the bearer token and return the user id. No database access."""
     if credentials is None:
         raise HTTPException(status_code=401, detail="Not authenticated")
     try:
         payload = jwt.decode(credentials.credentials, JWT_SECRET, algorithms=[JWT_ALGORITHM])
-        user_id = int(payload["sub"])
+        return int(payload["sub"])
     except (jwt.PyJWTError, KeyError, ValueError):
         raise HTTPException(status_code=401, detail="Invalid or expired token")
 
+
+def get_current_user(user_id: int = Depends(get_token_user_id), conn=Depends(get_db)):
     with conn.cursor() as cur:
         cur.execute("SELECT id, username, email FROM users WHERE id = %s", (user_id,))
         user = cur.fetchone()
