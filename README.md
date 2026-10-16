@@ -165,7 +165,20 @@ CloudWiseAI_Cloud_Project_2026
 - Cost anomaly detection
 - Automatic cloud optimization suggestions
 
-   ## AWS Deployment
 
-   The AWS deployment kit is in `src/aws/` (`DEPLOYMENT.md` and `ec2_setup.sh`).
-   Status: architecture designed and deployment scripted; live deployment pending.
+## AWS Deployment
+
+The AWS deployment kit is in `src/aws/` (`DEPLOYMENT.md` and `ec2_setup.sh`).
+
+**Status:** Architecture designed and deployment scripted; live deployment pending.
+
+## Team and Roles
+
+| Member | Roll No. | Area |
+|---|---|---|
+| Rahul Ganesan | 24BIT0257 | Backend (FastAPI, PostgreSQL), dataset, ML analysis integration, AWS design and deployment kit |
+| Ridhima Singh | 24BIT0260 | Frontend (React), UI edits and review |
+| Akhilesh Reddy | 24BIT0352 | AI/ML (assigned) |
+
+See the project report for the full contribution table and evidence.
+
