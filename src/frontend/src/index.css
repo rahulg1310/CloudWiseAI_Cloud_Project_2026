@@ -4,7 +4,7 @@
 :root {
   --bg-base:       #0a0e14;
   --bg-surface:    #0d1219;
-  --bg-card:       #10151d;
+  --bg-card:       #10151d; 
   --bg-card-hover: #141b25;
   --bg-elevated:   #182230;
   --border:        rgba(255,255,255,0.06);
