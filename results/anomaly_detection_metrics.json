@@ -1,6 +1,6 @@
 {
   "method": "weekday-aware robust z-score",
-  "specificity": "weekday-based anomaly detection",
+  "specificity": "weekday-based anomaly detections",
   "parameters": {
     "lookback_weeks": 8,
     "z_threshold": 4.0,
