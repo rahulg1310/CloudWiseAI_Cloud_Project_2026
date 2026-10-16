@@ -6,7 +6,7 @@ const UserContext = ({children}) => {
   const [user, setUser] = useState(()=>{
     const storedUser = localStorage.getItem("user");
     if(storedUser){
-        return JSON.parse(storedUser);
+        return JSON.parse(storedUser); 
     }
     return null;
   });
