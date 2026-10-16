@@ -10,7 +10,7 @@ const CostTrendChart = (props) => {
     return <div className='text-[#4b5768] text-sm py-10 text-center'>No cost data yet</div>
   }
 
-  const costs = data.map((d)=>d.cost);
+  const costs = data.map((d) => Number(d.cost) || 0);
   const max = Math.max(...costs);
   const min = Math.min(...costs);
   const range = (max - min) || 1;
@@ -36,7 +36,7 @@ const CostTrendChart = (props) => {
       {data.map((d, i)=>{
         const x = padding + (i / (data.length - 1)) * (width - padding * 2);
         const y = height - padding - ((d.cost - min) / range) * (height - padding * 2);
-        return <circle key={d.date} cx={x} cy={y} r='2.5' fill='#0a0e14' stroke='#22d3ee' strokeWidth='1.5' />
+        return <circle key={d.date} cx={x} cy={y} r='3' fill='#0a0e14' stroke='#22d3ee' strokeWidth='1.5' className='transition-all duration-200' />
       })}
     </svg>
   )

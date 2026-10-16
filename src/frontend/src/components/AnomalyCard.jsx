@@ -7,6 +7,7 @@ const severityStyles = {
   High: 'text-[#f59e0b] bg-[#f59e0b]/10',
   Medium: 'text-[#22d3ee] bg-[#22d3ee]/10',
   Low: 'text-[#8b98a8] bg-white/5',
+  Default: 'text-[#8b98a8] bg-white/5',
 }
 
 const AnomalyCard = (props) => {
@@ -15,7 +16,7 @@ const AnomalyCard = (props) => {
       <div className='flex justify-between items-start gap-3'>
         <div className='flex items-center gap-2'>
           <AlertTriangle size={17} className='text-[#f43f5e]' />
-          <h1 className='body font-semibold'>{props.service}</h1>
+           <h1 className='body font-semibold truncate'>{props.service}</h1>
         </div>
         <span className={`body font-medium text-[12px] py-1 px-3 rounded-full ${severityStyles[props.severity] || severityStyles.Low}`}>
           {props.severity}
