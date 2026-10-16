@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import Sidebar from '../components/Sidebar'
 import RecommendationCard from '../components/RecommendationCard'
 import { CostData } from '../context/CostContext'
+import formatMoney from '../utils/formatMoney'
 
 const Recommendations = () => {
   const {recommendations} = useContext(CostData);
@@ -19,7 +20,7 @@ const Recommendations = () => {
             </div>
             <div className='bg-[#10b981]/10 border border-[#10b981]/20 rounded-xl px-4 py-2.5'>
               <span className='body text-[12px] text-[#10b981]'>Total potential savings</span>
-              <p className='mono text-lg text-[#10b981] font-medium'>${totalSavings.toLocaleString()}/mo</p>
+              <p className='mono text-lg text-[#10b981] font-medium'>${formatMoney(totalSavings)}/mo</p>
             </div>
           </div>
 

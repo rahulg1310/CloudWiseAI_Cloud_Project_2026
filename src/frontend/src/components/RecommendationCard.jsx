@@ -1,5 +1,6 @@
 import React from 'react'
 import { Sparkles } from 'lucide-react'
+import formatMoney from '../utils/formatMoney'
 
 const effortStyles = {
   Low: 'text-[#10b981] bg-[#10b981]/10',
@@ -25,7 +26,7 @@ const RecommendationCard = (props) => {
       <p className='body text-[13px] text-[#8b98a8]'>{props.description}</p>
       <div className='flex justify-between items-center pt-1'>
         <span className='body text-[12px] text-[#4b5768]'>Estimated monthly savings</span>
-        <span className='mono text-[16px] text-[#10b981]'>${props.potentialSavings.toLocaleString()}</span>
+        <span className='mono text-[16px] text-[#10b981]'>${formatMoney(props.potentialSavings)}</span>
       </div>
     </div>
   )

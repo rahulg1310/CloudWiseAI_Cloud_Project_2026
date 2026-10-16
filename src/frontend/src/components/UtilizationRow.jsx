@@ -1,4 +1,5 @@
 import React from 'react'
+import formatMoney from '../utils/formatMoney'
 
 const statusStyles = {
   Healthy: 'text-[#10b981] bg-[#10b981]/10',
@@ -25,10 +26,12 @@ const UtilizationRow = (props) => {
         </div>
         <span className='mono text-[11px] text-[#8b98a8]'>{props.utilization}%</span>
       </div>
-      <span className={`body font-medium text-[12px] py-1 px-3 rounded-full shrink-0 ${statusStyles[props.status] || statusStyles.Healthy}`}>
-        {props.status}
-      </span>
-      <span className='mono text-sm w-16 text-right shrink-0'>${props.cost}</span>
+      <div className='shrink-0 sm:w-28'>
+        <span className={`body font-medium text-[12px] py-1 px-3 rounded-full ${statusStyles[props.status] || statusStyles.Healthy}`}>
+          {props.status}
+        </span>
+      </div>
+      <span className='mono text-sm w-24 text-right shrink-0'>${formatMoney(props.cost)}</span>
     </div>
   )
 }

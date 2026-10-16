@@ -27,33 +27,38 @@
   --font-mono:     'IBM Plex Mono', monospace;
 }
 
-*, *::after, *::before {
-  box-sizing: border-box;
-}
+/* These resets live in Tailwind's base layer on purpose. Plain unlayered rules like
+   `button { background-color: transparent }` or `a { color: inherit }` beat every Tailwind
+   utility (bg-*, text-*, hover:*), which made buttons and links lose their colours. */
+@layer base {
+  *, *::after, *::before {
+    box-sizing: border-box;
+  }
 
-body {
-  background-color: var(--bg-base);
-  font-family: var(--font-body);
-  color: var(--text-primary);
-  min-height: 100vh;
-  overflow-x: hidden;
-}
+  body {
+    background-color: var(--bg-base);
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 
-html { font-size: 16px; }
+  html { font-size: 16px; }
 
-button {
-  cursor: pointer;
-  font-family: inherit;
-  background-color: transparent;
-}
+  button {
+    cursor: pointer;
+    font-family: inherit;
+    background-color: transparent;
+  }
 
-input, select, textarea {
-  font-family: inherit;
+  input, select, textarea {
+    font-family: inherit;
+  }
 }
 
 ::-webkit-scrollbar {

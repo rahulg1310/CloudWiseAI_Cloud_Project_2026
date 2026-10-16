@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import Sidebar from '../components/Sidebar'
 import CostTrendChart from '../components/CostTrendChart'
 import { CostData } from '../context/CostContext'
+import formatMoney from '../utils/formatMoney'
 
 const CostAnalysis = () => {
   const {costTrend, serviceBreakdown} = useContext(CostData);
@@ -42,7 +43,7 @@ const CostAnalysis = () => {
                         <span className='w-2 h-2 rounded-full' style={{backgroundColor: elem.color}}></span>
                         {elem.service}
                       </td>
-                      <td className='px-5 py-3 mono'>${elem.cost.toLocaleString()}</td>
+                      <td className='px-5 py-3 mono'>${formatMoney(elem.cost)}</td>
                       <td className='px-5 py-3 mono text-[#8b98a8]'>{elem.percent}%</td>
                     </tr>
                   ))}
@@ -50,7 +51,7 @@ const CostAnalysis = () => {
                 <tfoot>
                   <tr>
                     <td className='px-5 py-3 body font-semibold'>Total</td>
-                    <td className='px-5 py-3 mono font-semibold'>${totalCost.toLocaleString()}</td>
+                    <td className='px-5 py-3 mono font-semibold'>${formatMoney(totalCost)}</td>
                     <td className='px-5 py-3'></td>
                   </tr>
                 </tfoot>

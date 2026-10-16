@@ -20,8 +20,8 @@ const Utilization = () => {
             <div className='hidden sm:flex items-center gap-4 py-3 px-4 border-b border-white/6 body text-[12px] text-[#4b5768] font-medium'>
               <span className='flex-1'>Resource</span>
               <span className='w-32'>Utilization</span>
-              <span className='w-[92px]'>Status</span>
-              <span className='w-16 text-right'>Cost</span>
+              <span className='w-28'>Status</span>
+              <span className='w-24 text-right'>Cost</span>
             </div>
             {utilization.map((elem)=>(
               <UtilizationRow key={elem.resource} {...elem} />

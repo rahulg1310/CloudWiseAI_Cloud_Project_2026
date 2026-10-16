@@ -8,6 +8,7 @@ import { DollarSign } from 'lucide-react'
 import { TrendingUp } from 'lucide-react'
 import { PiggyBank } from 'lucide-react'
 import { AlertTriangle } from 'lucide-react'
+import formatMoney from '../utils/formatMoney'
 
 const Dashboard = () => {
   const {costSummary, costTrend, serviceBreakdown} = useContext(CostData);
@@ -25,7 +26,7 @@ const Dashboard = () => {
           <div className='flex flex-wrap gap-4'>
             <StatCard
               title='Current Month Spend'
-              value={`$${costSummary.totalCost.toLocaleString()}`}
+              value={`$${formatMoney(costSummary.totalCost)}`}
               sub={`${costSummary.monthOverMonthChange >= 0 ? '+' : ''}${costSummary.monthOverMonthChange}% vs last month`}
               subColor={costSummary.monthOverMonthChange >= 0 ? 'text-[#f59e0b]' : 'text-[#10b981]'}
               icon={<DollarSign size={16} className='text-[#22d3ee]' />}
@@ -33,14 +34,14 @@ const Dashboard = () => {
             />
             <StatCard
               title='Forecasted Spend'
-              value={`$${costSummary.forecastedCost.toLocaleString()}`}
+              value={`$${formatMoney(costSummary.forecastedCost)}`}
               sub='Next month forecast'
               icon={<TrendingUp size={16} className='text-[#3b82f6]' />}
               bg='bg-[#3b82f6]/10'
             />
             <StatCard
               title='Potential Savings'
-              value={`$${costSummary.potentialSavings.toLocaleString()}`}
+              value={`$${formatMoney(costSummary.potentialSavings)}`}
               sub='From open recommendations'
               subColor='text-[#10b981]'
               icon={<PiggyBank size={16} className='text-[#10b981]' />}

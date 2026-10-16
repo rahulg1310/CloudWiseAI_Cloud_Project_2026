@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import Sidebar from '../components/Sidebar'
 import PredictionChart from '../components/PredictionChart'
 import { CostData } from '../context/CostContext'
+import formatMoney from '../utils/formatMoney'
 
 const Predictions = () => {
   const {predictions} = useContext(CostData);
@@ -34,7 +35,7 @@ const Predictions = () => {
             {predictions.forecast.map((elem)=>(
               <div key={elem.month} className='bg-[#10151d] border border-white/6 rounded-xl p-5 flex flex-col gap-2'>
                 <span className='body text-sm text-[#8b98a8]'>{elem.month} forecast</span>
-                <span className='mono text-2xl font-medium'>${elem.cost.toLocaleString()}</span>
+                <span className='mono text-2xl font-medium'>${formatMoney(elem.cost)}</span>
                 <span className='body text-[12px] text-[#4b5768]'>{Math.round(elem.confidence * 100)}% backtest accuracy</span>
               </div>
             ))}

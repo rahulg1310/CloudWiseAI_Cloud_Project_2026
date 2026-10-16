@@ -1,5 +1,6 @@
 import React from 'react'
 import { AlertTriangle } from 'lucide-react'
+import formatMoney from '../utils/formatMoney'
 
 const severityStyles = {
   Critical: 'text-[#f43f5e] bg-[#f43f5e]/10',
@@ -23,11 +24,11 @@ const AnomalyCard = (props) => {
       <p className='body text-[13px] text-[#8b98a8]'>{props.note}</p>
       <div className='flex gap-6 flex-wrap pt-1'>
         <div className='flex flex-col gap-0.5'>
-          <span className='mono text-[15px] text-[#e6edf3]'>${props.expectedCost}</span>
+          <span className='mono text-[15px] text-[#e6edf3]'>${formatMoney(props.expectedCost)}</span>
           <span className='body text-[11px] text-[#4b5768]'>EXPECTED</span>
         </div>
         <div className='flex flex-col gap-0.5'>
-          <span className='mono text-[15px] text-[#f43f5e]'>${props.actualCost}</span>
+          <span className='mono text-[15px] text-[#f43f5e]'>${formatMoney(props.actualCost)}</span>
           <span className='body text-[11px] text-[#4b5768]'>ACTUAL</span>
         </div>
         <div className='flex flex-col gap-0.5'>

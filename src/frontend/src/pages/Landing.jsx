@@ -15,7 +15,7 @@ const features = [
 
 const Landing = () => {
   return (
-    <div className='w-full min-h-screen bg-[#0a0e14]'>
+    <div className='w-full h-screen overflow-y-auto bg-[#0a0e14]'>
       <nav className='max-w-6xl mx-auto flex items-center justify-between px-6 py-5'>
         <div className='flex items-center gap-2'>
           <Cloud size={20} className='text-[#22d3ee]' />

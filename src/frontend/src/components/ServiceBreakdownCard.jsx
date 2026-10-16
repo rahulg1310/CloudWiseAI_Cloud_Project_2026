@@ -1,4 +1,5 @@
 import React from 'react'
+import formatMoney from '../utils/formatMoney'
 
 const ServiceBreakdownCard = (props) => {
   return (
@@ -7,7 +8,7 @@ const ServiceBreakdownCard = (props) => {
         <div key={elem.service} className='flex flex-col gap-1'>
           <div className='flex justify-between items-center'>
             <span className='body text-sm text-[#e6edf3]'>{elem.service}</span>
-            <span className='mono text-sm text-[#8b98a8]'>${elem.cost.toLocaleString()}</span>
+            <span className='mono text-sm text-[#8b98a8]'>${formatMoney(elem.cost)}</span>
           </div>
           <div className='h-1.5 bg-[#182230] rounded-full overflow-hidden w-full'>
             <div
