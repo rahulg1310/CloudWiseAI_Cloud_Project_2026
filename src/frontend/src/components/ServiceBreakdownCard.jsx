@@ -3,7 +3,7 @@ import formatMoney from '../utils/formatMoney'
 
 const ServiceBreakdownCard = (props) => {
   return (
-    <div className='flex flex-col gap-3'>
+    <div className='flex flex-col gap-3'> 
       {props.data.map((elem)=>(
         <div key={elem.service} className='flex flex-col gap-1'>
           <div className='flex justify-between items-center'>
