@@ -1,6 +1,6 @@
 import React from 'react'
 
-const PredictionChart = (props) => {
+const PredictionChart = (props) => { 
   const historical = props.historical || [];
   const forecast = props.forecast || [];
   const all = [...historical, ...forecast];
