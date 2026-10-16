@@ -6,7 +6,7 @@ const StatCard = (props) => {
       <div className='flex items-center justify-between'>
         <span className='body text-[13px] text-[#8b98a8]'>{props.title}</span>
         <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${props.bg}`}>
-          {props.icon}
+          {props.icon} 
         </div>
       </div>
       <h1 className='mono text-2xl font-medium'>{props.value}</h1>
