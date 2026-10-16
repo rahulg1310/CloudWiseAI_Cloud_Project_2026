@@ -3,7 +3,7 @@ import React from 'react'
 const CostTrendChart = (props) => {
   const data = props.data || [];
   const width = 640;
-  const height = 220;
+  const height = 220; 
   const padding = 30;
 
   if(data.length === 0){
