@@ -164,3 +164,8 @@ CloudWiseAI_Cloud_Project_2026
 - Budget alerts
 - Cost anomaly detection
 - Automatic cloud optimization suggestions
+
+   ## AWS Deployment
+
+   The AWS deployment kit is in `src/aws/` (`DEPLOYMENT.md` and `ec2_setup.sh`).
+   Status: architecture designed and deployment scripted; live deployment pending.
