@@ -5,7 +5,8 @@
       "monthly_mape_by_horizon": {
         "1_month": 0.0152,
         "2_month": 0.0264,
-        "3_month": 0.0325
+        "3_month": 0.0325,
+        "4_month": 0.0341
       },
       "monthly_mape_mean": 0.0247,
       "daily_mae": 22.22
