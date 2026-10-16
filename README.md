@@ -164,3 +164,13 @@ CloudWiseAI_Cloud_Project_2026
 - Budget alerts
 - Cost anomaly detection
 - Automatic cloud optimization suggestions
+
+## Team and Roles
+
+| Member | Roll No. | Area |
+|---|---|---|
+| Rahul Ganesan | 24BIT0257 | Backend (FastAPI, PostgreSQL), dataset, ML analysis integration, AWS design and deployment kit |
+| Ridhima Singh | 24BIT0260 | Frontend (React) edits and review |
+| Akhilesh Reddy | 24BIT0352 | AI/ML (assigned) |
+
+See the project report for the full contribution table and evidence.
