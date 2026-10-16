@@ -5,7 +5,7 @@ import { CostData } from '../context/CostContext'
 import formatMoney from '../utils/formatMoney'
 
 const Recommendations = () => {
-  const {recommendations} = useContext(CostData);
+  const {recommendations} = useContext(CostData); 
   const totalSavings = recommendations.reduce((sum, elem)=>sum + elem.potentialSavings, 0);
 
   return (
