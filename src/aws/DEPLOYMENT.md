@@ -12,7 +12,7 @@ Browser ──HTTPS──> CloudFront ──> S3                      (React fro
 CloudWatch alarms ──> SNS ──> email          IAM: admin user, EC2 role (Session Manager)
 ```
 
-Region used everywhere: **Asia Pacific (Sydney) `ap-southeast-2`** (the account's Free plan locked the region; Mumbai `ap-southeast-2` was not available). Check the region name in the top right
+Region used everywhere: **Asia Pacific (Sydney) `ap-southeast-2`** (the account's Free plan locked the region; Mumbai `ap-south-1` was not available). Check the region name in the top right
 of the console before every step. Resources in a different region will not find each other.
 
 Not deployed (listed as future work in the report): Lambda ETL for CUR files, SageMaker training,
