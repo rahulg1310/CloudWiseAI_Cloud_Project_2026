@@ -1,34 +1,24 @@
 # Technology Stack
 
 ## Frontend
-
-- React.js
+- React (Vite), React Router, Context API
 - Tailwind CSS
-- Chart.js
+- Axios, lucide-react icons
+- Hand-built SVG charts (no chart library)
 
 ## Backend
+- FastAPI (Python), REST API
+- PostgreSQL with psycopg2
+- bcrypt password hashing, JWT (HS256) authentication
 
-- FastAPI
-- Python
+## AI / Machine Learning
+- Pandas, NumPy, Scikit-learn (ridge regression), XGBoost
+- Weekday-aware robust z-score for anomaly detection
+- Optional assistant through Ollama (local), Anthropic or OpenAI
 
-## Database
+## AWS (designed; live deployment pending)
+- S3 and CloudFront (frontend), API Gateway (HTTPS entry), EC2 (FastAPI and analysis scripts)
+- RDS PostgreSQL, IAM, CloudWatch and SNS
 
-- PostgreSQL
-
-## AI/ML
-
-- Scikit-learn
-- Pandas
-- NumPy
-- XGBoost
-
-## AWS
-
-- EC2
-- S3
-- RDS
-- Lambda
-- SageMaker
-- CloudWatch
-- SNS
-- IAM
+## Future work
+- AWS Lambda (CUR ingestion), Amazon SageMaker (training), Amazon QuickSight
