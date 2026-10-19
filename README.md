@@ -54,7 +54,7 @@ This project proposes an AI-powered FinOps framework that predicts future cloud 
 - XGBoost
 
 ## Cloud (AWS)
-- Designed and scripted: Amazon S3 and CloudFront, API Gateway, Amazon EC2, Amazon RDS, AWS IAM, CloudWatch, SNS
+- Deployed (Sydney, ap-southeast-2, 19 October 2026): Amazon S3 and CloudFront, API Gateway, Amazon EC2, Amazon RDS, AWS IAM, CloudWatch, SNS
 - Future work: AWS Lambda (CUR ingestion), Amazon SageMaker, Amazon QuickSight
 
 ---
@@ -152,11 +152,11 @@ CloudWiseAI_Cloud_Project_2026
 - FastAPI Backend (auth, costs, utilization, anomalies, recommendations, predictions) Completed
 - Anomaly Detection, Recommendation Rules and Cost Forecasting Completed
 - AI Assistant (src/backend + src/frontend) Completed
-- AWS design and deployment kit (src/aws) Completed; live AWS deployment pending
+- AWS deployment (src/aws) Completed; deployed on 19 October 2026 and tests T09-T11 passed (screenshots in docs/aws/)
 
 # Future Scope
 
-- Live AWS deployment and monitoring (src/aws/DEPLOYMENT.md)
+- Per-user data and CUR upload, VPC Link instead of an open port 8000, MFA and IAM administrator sign-in, assistant on AWS
 - Real-time AWS billing integration (Lambda CUR ingestion)
 - Validation on real billing exports
 - Budget alerts

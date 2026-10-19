@@ -16,7 +16,7 @@
 - Weekday-aware robust z-score for anomaly detection
 - Optional assistant through Ollama (local), Anthropic or OpenAI
 
-## AWS (designed; live deployment pending)
+## AWS (deployed in Sydney, ap-southeast-2, 19 October 2026)
 - S3 and CloudFront (frontend), API Gateway (HTTPS entry), EC2 (FastAPI and analysis scripts)
 - RDS PostgreSQL, IAM, CloudWatch and SNS
 

@@ -12,7 +12,7 @@ Browser ──HTTPS──> CloudFront ──> S3                      (React fro
 CloudWatch alarms ──> SNS ──> email          IAM: admin user, EC2 role (Session Manager)
 ```
 
-Region used everywhere: **Asia Pacific (Mumbai) `ap-south-1`**. Check the region name in the top right
+Region used everywhere: **Asia Pacific (Sydney) `ap-southeast-2`** (the account's Free plan locked the region; Mumbai `ap-southeast-2` was not available). Check the region name in the top right
 of the console before every step. Resources in a different region will not find each other.
 
 Not deployed (listed as future work in the report): Lambda ETL for CUR files, SageMaker training,
@@ -61,7 +61,7 @@ production setup would use a VPC Link and a private subnet instead.
   turn off Performance Insights and Enhanced Monitoring
 
 It takes about 10 minutes. When the status is *Available*, open the database and copy the **Endpoint**
-(`cloudwise-db.xxxxxxxx.ap-south-1.rds.amazonaws.com`).
+(`cloudwise-db.xxxxxxxx.ap-southeast-2.rds.amazonaws.com`).
 
 Screenshot: RDS database summary (hide the password).
 
@@ -90,7 +90,7 @@ In the shell that opens, run (replace the host and the CORS value later, see Par
 ```bash
 sudo -i
 curl -fsSL https://raw.githubusercontent.com/rahulg1310/CloudWiseAI_Cloud_Project_2026/main/src/aws/ec2_setup.sh -o ec2_setup.sh
-DB_HOST=cloudwise-db.xxxxxxxx.ap-south-1.rds.amazonaws.com bash ec2_setup.sh
+DB_HOST=cloudwise-db.xxxxxxxx.ap-southeast-2.rds.amazonaws.com bash ec2_setup.sh
 ```
 
 It asks for the database password, then takes about 5 to 10 minutes: packages, Python libraries, loading
@@ -121,7 +121,7 @@ Screenshot: EC2 instance details page.
 4. Stage: `$default` with auto-deploy
 5. **Do not** configure CORS on API Gateway. FastAPI already answers CORS requests.
 
-Copy the **Invoke URL** (`https://abc123.execute-api.ap-south-1.amazonaws.com`).
+Copy the **Invoke URL** (`https://abc123.execute-api.ap-southeast-2.amazonaws.com`).
 Check in a browser: `<Invoke URL>/api/health` shows `{"status":"ok"}`.
 
 The frontend's API address is the Invoke URL plus `/api`.
@@ -134,7 +134,7 @@ On your laptop, in `src/frontend`, create a file named `.env.production` with on
 (your own Invoke URL, ending in `/api`):
 
 ```
-VITE_API_URL=https://abc123.execute-api.ap-south-1.amazonaws.com/api
+VITE_API_URL=https://abc123.execute-api.ap-southeast-2.amazonaws.com/api
 ```
 
 ```bash
@@ -144,7 +144,7 @@ npm run build
 
 The `dist` folder is the website.
 
-1. **S3 > Create bucket**: any unique name (e.g. `cloudwise-frontend-yourname`), region `ap-south-1`,
+1. **S3 > Create bucket**: any unique name (e.g. `cloudwise-frontend-yourname`), region `ap-southeast-2`,
    keep **Block all public access** on.
 2. Open the bucket > **Upload** > drag in everything *inside* `dist` (`index.html`, `assets`, `favicon.svg`).
 3. **CloudFront > Create distribution**: origin = that S3 bucket, choose the option that allows **private access
@@ -187,7 +187,7 @@ Open **CloudShell** (the `>_` icon in the console's top bar). It already has AWS
 Replace the values in capitals.
 
 ```bash
-REGION=ap-south-1
+REGION=ap-southeast-2
 TOPIC=$(aws sns create-topic --name cloudwise-alerts --region $REGION --query TopicArn --output text)
 aws sns subscribe --topic-arn $TOPIC --protocol email --notification-endpoint YOUR@EMAIL --region $REGION
 # open the confirmation email from AWS and click "Confirm subscription"
@@ -236,3 +236,15 @@ delete in this order:
 | `{"message":"Not Found"}` from API Gateway | route must be `ANY /api/{proxy+}` and the integration URL must end in `/api/{proxy}`. |
 | `{"message":"Service Unavailable"}` or timeout | EC2 is stopped, the API crashed (`sudo journalctl -u cloudwise -n 50`), or port 8000 is not open in `cloudwise-api-sg`. |
 | EC2 public DNS changed | it changes after a stop and start. Update the API Gateway integration URL, or allocate an Elastic IP. |
+
+## Notes from the live deployment (19 October 2026)
+
+- **Region:** the AWS Free plan restricted the account to Sydney (`ap-southeast-2`), so every region value above uses it.
+- **Console sign-in and MFA:** the IAM console page for MFA was unavailable on this account, so the work was done from the root account without MFA. An IAM user `cloudwise-admin` exists but has no console password.
+- **Session Manager:** the EC2 *Connect* page says port 22 is not authorized (correct, there is no SSH). Use the **Session Manager** tab instead.
+- **"No space left on device" during `pip install`:** `/tmp` is small on the instance. Re-run with `sudo TMPDIR=/var/tmp DB_HOST=... bash ec2_setup.sh`.
+- **CORS after CloudFront is created:** re-run the script with the CloudFront address, for example
+  `sudo TMPDIR=/var/tmp CORS_ORIGINS=https://YOUR-ID.cloudfront.net,http://localhost:5173 SKIP_DATA=1 bash ec2_setup.sh`.
+- **CloudFront:** choose the S3 bucket itself as the origin (not a folder inside it), set the default root object to `index.html`, and map error codes 403 and 404 to `/index.html` with response code 200.
+- **Assistant:** not configured on AWS, so it answers "isn't set up yet" there.
+- **Cost:** about 7 to 9 US dollars per week if left running; a zero-spend budget e-mails an alert when any cost appears.

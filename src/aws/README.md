@@ -11,7 +11,7 @@ Step-by-step guide: [DEPLOYMENT.md](DEPLOYMENT.md). Backend installer for the se
 | Amazon EC2 | runs the FastAPI backend and the ML analysis scripts |
 | Amazon RDS (PostgreSQL) | stores cost records, users and analysis results; reachable only from EC2 |
 | CloudWatch + SNS | alarms on EC2 CPU and API errors, delivered by email |
-| IAM | admin user, MFA, EC2 role for Session Manager (no SSH key) |
+| IAM | EC2 role for Session Manager (no SSH key); admin user created, MFA not enabled |
 
 ## Future work (not built)
 
