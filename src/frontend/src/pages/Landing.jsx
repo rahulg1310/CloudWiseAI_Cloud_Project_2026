@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Cloud } from 'lucide-react'
 import { TrendingUp } from 'lucide-react'
-import { AlertTriangle } from 'lucide-react
+import { AlertTriangle } from 'lucide-react'
 import { Sparkles } from 'lucide-react'
 import { LineChart } from 'lucide-react'
 
